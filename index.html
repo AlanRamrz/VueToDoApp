@@ -4,11 +4,32 @@
     <meta charset="utf-8">
     <title>ToDo App</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   </head>
   <body>
 
-    <div id="toDoApp" class="container">
-      {{ message }}
+    <div id="toDoApp" class="container center">
+      <div class="row">
+        <h3 class="header red-text text-darken-2">{{ title }}</h3>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <i class="material-icons prefix">add_circle</i>
+          <input id="new" type="text" v-model.trim="newToDo" v-on:keyup.enter="add">
+          <label for="new">New ToDo</label>
+        </div>
+      </div>
+      <div class="row">
+        <ul class="collection">
+          <li class="collection-item" v-for="(item,id) in toDos">
+            <div>{{ item.description }}
+              <a class="secondary-content" href="#" v-on:click="remove(id)">
+                <i class="material-icons">remove_circle</i>
+              </a>
+            </div>
+          </li>
+        </ul>
+      </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
