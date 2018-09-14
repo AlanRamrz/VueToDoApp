@@ -5,6 +5,7 @@
     <title>ToDo App</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="css/index.css" rel="stylesheet">
   </head>
   <body>
 
@@ -20,9 +21,14 @@
         </div>
       </div>
       <div class="row">
-        <ul class="collection">
-          <li class="collection-item" v-for="(item,id) in toDos">
-            <div>{{ item.description }}
+        <ul class="collection" v-if="toDos.length > 0">
+          <li class="collection-item" v-for="(item,id) in toDos" v-bind:class="{grey: item.done, 'lighten-3': item.done}">
+            <label class="primary-content">
+              <input type="checkbox" v-model="item.done">
+              <span></span>
+            </label>
+            <div>
+              <label class="notDone" v-bind:class="{done : item.done}">{{ item.description }}</label>
               <a class="secondary-content" href="#" v-on:click="remove(id)">
                 <i class="material-icons">remove_circle</i>
               </a>
